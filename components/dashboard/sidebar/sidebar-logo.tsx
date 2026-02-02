@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import Image from "next/image";
 
 interface SidebarLogoProps {
   onClose?: () => void;
@@ -14,7 +15,7 @@ export default function SidebarLogo({
   return (
     <div className="flex h-16 items-center justify-between px-6">
       <div className="pt-4 w-full flex gap-2">
-       <h1 className="text-red-600 font-bold">Image</h1>
+       <Image src={'/adminPhoto.png'} alt="photo" width={40} height={40} className="w-10 h-10 rounded"/>
         <div>
           <h2 className="font-semibold">Admin</h2>
           <p className="text-xs">admin24@gmail.com</p>

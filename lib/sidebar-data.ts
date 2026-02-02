@@ -1,6 +1,4 @@
-import { categorie_ac, categorie_ac_i, dashboard_ac, dashboard_i_ac, Setting_ic, } from "@/app/icon/dbIcon";
-
-
+import { dashboard_ac, dashboard_i_ac, eventManagement_ac, eventManagement_i_ac, settings_ac, settings_i_ac, subscription_ac, subscription_i_ac, userManagement_ac, userManagement_i_ac } from "@/app/icon/dbIcon";
 
 
 export interface MenuItem {
@@ -22,42 +20,39 @@ export const SidebarItems: MenuItem[] = [
     name: "Dashboard",
     href: "/admin",
     icon: dashboard_ac, // Active icon
-    inactiveIcon: dashboard_i_ac, // Inactive icon
+    inactiveIcon: dashboard_i_ac , // Inactive icon
     title: "Dashboard management",
   },
   {
-    name: "Category Management",
-    href: "/admin/category-management",
-    icon: categorie_ac, // Active icon
-    inactiveIcon: categorie_ac_i, // Inactive icon
-    title: "Category Management",
-    subtitle: "Manage and monitor all categories.",
+    name: "User Management",
+    href: "/admin/user-management",
+    icon: userManagement_ac, // Active icon
+    inactiveIcon: userManagement_i_ac, // Inactive icon
+    title: "User Management",
   },
+  {
+    name: "Event Management",
+    href: "/admin/event-management",
+    icon: eventManagement_ac, // Active icon
+    inactiveIcon: eventManagement_i_ac, // Inactive icon
+    title: "Event Management",
+  },
+  {
+    name: "Payment & Monetization",
+    href: "/admin/payment-monetization",
+    icon: subscription_ac, // Active icon
+    inactiveIcon: subscription_i_ac, // Inactive icon
+    title: "Subscription Management",
+  },
+
+
+
   {
     name: "Settings",
     href: "/admin/settings",
-    icon: Setting_ic,
+    icon: settings_ac, // Active icon
+    inactiveIcon: settings_i_ac, // Inactive icon
     title: "Settings",
-    subtitle: "Configure your application settings.",
-    children: [
-      {
-        name: "Change Password",
-        href: "/admin/settings/change-password",
-        icon: categorie_ac, // Active icon
-        inactiveIcon: categorie_ac_i, // Inactive icon
-        title: "Change Password",
-        subtitle: "Update your account password for security.",
-      },
-      {
-        name: "Privacy Policy",
-        href: "/admin/settings/privacy-policy",
-        icon: dashboard_ac, // Active icon
-        inactiveIcon: dashboard_i_ac, // Inactive icon
-        title: "Privacy Policy",
-        subtitle: "Review our privacy policy and data protection terms.",
-      },
-
-    ],
   },
 ];
 
@@ -82,7 +77,7 @@ export const getPageInfo = (pathname: string): { title: string; subtitle?: strin
   const item = findItem(SidebarItems);
 
   return {
-    title: item?.title || "Page",
+    title: item?.title || "Notification",
     subtitle: item?.subtitle,
   };
 };

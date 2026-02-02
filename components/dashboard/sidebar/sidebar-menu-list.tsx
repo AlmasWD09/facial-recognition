@@ -25,7 +25,6 @@ export default function SidebarMenuList({
             item={item}
             isActive={pathname === item.href}
             onClick={onItemClick}
-            level={level}
           />
         </div>
       ))}

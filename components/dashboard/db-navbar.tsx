@@ -1,10 +1,9 @@
 "use client";
 
-
+import { DbNotification_cc } from "@/app/icon/dbIcon";
 import { getPageInfo } from "@/lib/sidebar-data";
 import { Menu } from "lucide-react";
-import { usePathname } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
 
 interface DashboardNavbarProps {
   onMenuClick: () => void;
@@ -12,12 +11,17 @@ interface DashboardNavbarProps {
 
 export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
   const pathname = usePathname();
-  
+  const router = useRouter();
+
   // Get dynamic title and subtitle based on current route
   const { title, subtitle } = getPageInfo(pathname);
 
+  const hanldeNotification = () => {
+    router.push("/admin/notification");
+  };
+
   return (
-    <div className="sticky bg-[#F5F5F5] h-20 top-0 z-10 flex   items-center justify-between  px-4 lg:px-6">
+    <div className="sticky bg-[rgba(250,250,250,1)] h-20 top-0 z-10 flex   items-center justify-between  px-4 lg:px-6">
       {/* Left side - Menu button + Search */}
       <div className="flex flex-1 items-center gap-3">
         {/* Mobile Menu Button */}
@@ -29,7 +33,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
         </button>
         {/* Page Title & Subtitle */}
         <div className="flex flex-col">
-          <h1 className="hidden md:block text-base sm:text-lg font-semibold  truncate">
+          <h1 className="hidden md:block text-2xl font-semibold  truncate">
             {title}
           </h1>
           {subtitle && (
@@ -38,12 +42,13 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
             </p>
           )}
         </div>
-  
       </div>
 
       {/* Right side - Notifications and Profile */}
       <div className="flex items-center gap-2 sm:gap-4">
-      <p>DB Notification</p>
+        <span onClick={() => hanldeNotification()} className="cursor-pointer">
+          <DbNotification_cc />
+        </span>
       </div>
     </div>
   );
