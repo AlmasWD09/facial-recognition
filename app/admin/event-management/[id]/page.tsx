@@ -1,6 +1,6 @@
-
 "use client";
 
+import CustomButton from "@/components/resuable/customButton/customButton";
 import BackButton from "@/components/shared/back-button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -38,11 +38,28 @@ const EventDetails = () => {
 
   return (
     <div className="pb-10">
-      <BackButton
-        text="Back"
-        onClick={() => router.back()}
-        className="text-lg px-4 rounded-lg"
-      />
+      <div className="flex justify-between items-center">
+        <BackButton
+          text="Back"
+          onClick={() => router.back()}
+          className="text-lg px-4 rounded-lg"
+        />
+
+        <button
+          style={{
+            background: "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
+            // padding: "10px 20px",
+            border: "none",
+            borderRadius: "8px",
+            fontSize: "20px",
+            color: "white",
+            cursor: "pointer",
+          }}
+          className="w-fit px-[60px] py-[10px]"
+        >
+          Delete
+        </button>
+      </div>
 
       {/* Event Header */}
       <div className="bg-[#f2f2f2] flex justify-between items-center p-3 rounded-2xl mt-4">
@@ -84,14 +101,12 @@ const EventDetails = () => {
 
       {/* Gallery Section - Same Height, Different Width */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Gallery</h2>
-
         <div className="grid grid-cols-12 gap-3">
           {galleryData?.map((item, index) => (
             <div
               key={item.id}
               className={`${getLayoutClass(
-                index
+                index,
               )} relative h-95 rounded-2xl overflow-hidden group cursor-pointer bg-gray-100`}
             >
               <Image

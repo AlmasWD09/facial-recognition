@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { LogOut } from "lucide-react";
 import { SidebarItems } from "@/lib/sidebar-data";
@@ -15,6 +15,11 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
+const router = useRouter()
+
+const handleLogout = () =>{
+router.push('/dashboard/login')
+}
 
   return (
     <>
@@ -39,7 +44,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* LOG OUT BUTTON */}
         <div className="w-full px-4 pb-4">
-          <Button className="w-full flex justify-between h-11 font-semibold cursor-pointer"
+          <Button
+          onClick={()=> handleLogout()}
+          className="w-full flex justify-between h-11 font-semibold cursor-pointer"
            style={{ background: 'linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)' }}
           >
             Log Out <LogOut />
