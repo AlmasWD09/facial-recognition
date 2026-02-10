@@ -18,7 +18,7 @@ export default function LandingPageLayout({ children }: childrenProps) {
       <div className="min-h-screen flex flex-col">
         {/* <Navbar /> */}
         <main className="flex-1">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

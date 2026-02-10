@@ -22,7 +22,7 @@ export default function Banner() {
         }}
       >
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center py-10">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center pt-40 pb-10">
             <div className="space-y-4 md:space-y-6">
               <h1 className="font-bold text-[24px] md:text-[40px]">
                 You Were There, We'll Prove It.
@@ -54,7 +54,7 @@ export default function Banner() {
 
           {/* category */}
           <div className="flex flex-wrap justify-center items-center gap-6 pb-6">
-            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary p-4 rounded-xl">
+            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
               <Image
                 src="/banner/category01.png"
                 alt="photo"
@@ -66,7 +66,7 @@ export default function Banner() {
                 Take a Selfie
               </h2>
             </div>
-            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary p-4 rounded-xl">
+            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
               <Image
            src="/banner/category02.png"
                 alt="photo"
@@ -78,7 +78,7 @@ export default function Banner() {
                 See your photos
               </h2>
             </div>
-            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary p-4 rounded-xl">
+            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
               <Image
                src="/banner/category03.png"
                 alt="photo"
