@@ -21,17 +21,17 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-secondary container mx-auto  sticky top-0 z-50 ">
+    <nav className="bg-[#f6ecdb] container mx-auto  sticky top-0 z-50 rounded-xl">
       <div className="bg-secondary/40 rounded-xl px-4">
-        <div className="flex justify-between items-center h-[70px] py-3">
+        <div className="flex justify-between items-center h-17.5 py-3">
           {/* Logo **/}
           <Link href={"/"}>
             <Image
-             src="/logo.png"
-                alt="photo"
-                width={100}
-                height={100}
-                className=" object-contain"
+              src="/logo.png"
+              alt="photo"
+              width={100}
+              height={100}
+              className=" object-contain"
             />
           </Link>
 
@@ -61,16 +61,14 @@ export default function Navbar() {
             })}
           </div>
 
-
           {/* Right Side */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <Link href="/auth">
-                <Button className="rounded border border-gray-200 bg-transparent TextGradientTwo font-semibold">
-                  Login
-                </Button>
-              </Link>
-            </div>
-
+          <div className="hidden lg:flex items-center space-x-3">
+            <Link href="/auth">
+              <button className="bg-white font-bold shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] rounded-lg px-4 py-2 cursor-pointer">
+                <span className="TextGradientTwo">Log in</span>
+              </button>
+            </Link>
+          </div>
 
           {/* Mobile Toggle */}
           <button
@@ -107,13 +105,13 @@ export default function Navbar() {
             {/* Mobile Profile */}
             <div className="py-3 border-t border-primary-foreground/20 mt-2">
               <div className="flex items-center gap-3">
-                  <div className="lg:hidden flex items-center space-x-3">
-                    <Link href="/auth" onClick={() => setIsOpen(false)}>
-                      <Button className="rounded-figma-md! border border-gray-200 bg-transparent text-black font-semibold">
-                        Login
-                      </Button>
-                    </Link>
-                  </div>
+                <div className="lg:hidden flex items-center space-x-3">
+                  <Link href="/auth" onClick={() => setIsOpen(false)}>
+                     <button className="bg-white font-bold shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] rounded-lg px-4 py-2 cursor-pointer">
+                <span className="TextGradientTwo">Log in</span>
+              </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

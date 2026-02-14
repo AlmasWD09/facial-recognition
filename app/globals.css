@@ -239,3 +239,14 @@ background: linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%);
 }
 
 
+
+/* Exact gradient when checked */
+.ui-checkbox[data-state="checked"] {
+  background: linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%);
+  border: none;
+}
+
+/* Optional: better hover feel */
+.ui-checkbox[data-state="checked"]:hover {
+  filter: brightness(1.03);
+}

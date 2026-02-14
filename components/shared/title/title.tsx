@@ -11,7 +11,7 @@ function SubTitle({ text, className }: titleProps) {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center text-center text-base text-[#000000] font-bold text-[24px] md:text-[40px]",
+        "flex flex-col items-center justify-center text-center text-base text-[#000000] font-semibold text-[24px] md:text-[40px]",
         className
       )}
     >

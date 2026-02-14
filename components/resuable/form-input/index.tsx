@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Eye_Off_Icon, Eye_On_Icon } from "@/app/icon";
 
 interface formInputProps {
   stylelabel?: string;
@@ -71,7 +72,7 @@ export function FromInput({
             <Input
               id={inputId}
               className={cn(
-                `h-13 w-full border-none placeholder:text-gray-500 bg-white rounded-2xl [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                `h-13 w-full border-none placeholder:text-gray-500 bg-secondary rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                   icon ? "pl-10" : "pl-4"
                 } ${eye ? "pr-10" : "pr-3"} text-blacks`,
                 className
@@ -96,9 +97,9 @@ export function FromInput({
                 className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
               >
                 {isPasswordVisible ? (
-                  <EyeOff className="text-muted-foreground" size={20} />
+                  <Eye_Off_Icon />
                 ) : (
-                  <Eye className="text-muted-foreground" size={20} />
+                  <Eye_On_Icon />
                 )}
               </div>
             )}
