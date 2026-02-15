@@ -11,7 +11,7 @@ interface childrenProps {
 export default function LandingPageLayout({ children }: childrenProps) {
   const pathname = usePathname();
   const isNavbarHidden = pathname === "/" || "/event-management";
-  const isFooterHidden = pathname === "/event-management";
+  const isFooterHidden = pathname === "/event-management" || "/create-event" || "/edit-event" || "/event-share";
 
   return (
     <>

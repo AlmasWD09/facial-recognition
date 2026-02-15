@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const eventData = [
   {
@@ -113,6 +114,8 @@ const eventData = [
 
 const EventManagement = () => {
   const router = useRouter();
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const selectedPlanData = Cookies.get("selectedPlan");
   const convertselectedPlanData = selectedPlanData
@@ -130,16 +133,31 @@ const EventManagement = () => {
   const handleNavigateEventPage = () => {
     router.push("/event-management");
   };
-  const handleCheckbox = (indexNumber:number) => {
-    console.log(indexNumber)
+
+  const handleCheckbox = (
+    indexNumber: number,
+    id: number,
+    checked: boolean,
+  ) => {
+    setSelectedId(id);
+    setSelectedIndexes((prev) => {
+      if (checked) {
+        return [...prev, indexNumber];
+      } else {
+        return prev.filter((item) => item !== indexNumber);
+      }
+    });
   };
 
-
-
-
+  const hanldeEditPage = (text: string) => {
+    if (selectedId && text === "edit") {
+      router.push(`/edit-event?editId=${selectedId}`);
+    } else if (selectedId && text === "share") {
+     router.push(`/event-share`);
+    }
+  };
 
   // const eventData = 0 || [];
-  const checkBoxClick = true;
 
   return (
     <div
@@ -167,30 +185,33 @@ const EventManagement = () => {
                 </span>
               </button>
             </div>
-            {/* share */}
-            <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
-              <button
-                type="button"
-                className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
-                // onClick={() => handleNavigateEventPage()}
-              >
-                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
-                  Share
-                </span>
-              </button>
-            </div>
-            {/* edit */}
-            <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
-              <button
-                type="button"
-                className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
-                // onClick={() => handleNavigateEventPage()}
-              >
-                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
-                  Edit
-                </span>
-              </button>
-            </div>
+
+            {selectedIndexes.length < 2 && (
+              <>
+                <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
+                  <button
+                    type="button"
+                    onClick={() => hanldeEditPage("share")}
+                    className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
+                  >
+                    <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                      Share
+                    </span>
+                  </button>
+                </div>
+                <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
+                  <button
+                    type="button"
+                    onClick={() => hanldeEditPage("edit")}
+                    className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
+                  >
+                    <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                      Edit
+                    </span>
+                  </button>
+                </div>
+              </>
+            )}
             {/* delete */}
             <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
               <button
@@ -247,9 +268,11 @@ const EventManagement = () => {
                         onClick={(e) => e.stopPropagation()}
                         onPointerDown={(e) => e.stopPropagation()}
                       >
-                        <Checkbox 
-                        id={`event-${item.id}`}
-                        onCheckedChange={() => handleCheckbox(index)}
+                        <Checkbox
+                          id={`event-${item.id}`}
+                          onCheckedChange={(checked) =>
+                            handleCheckbox(index, item.id, checked as boolean)
+                          }
                         />
                       </div>
                       <div>
