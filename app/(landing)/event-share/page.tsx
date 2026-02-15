@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import BackButton from "@/components/shared/back-button";
 import { Switch } from "@/components/ui/switch";
-import { LinkIcon, LockIcon, RefreshCwIcon, TrashIcon } from "lucide-react";
+import { LinkIcon } from "lucide-react";
 
 const emails = [
   "abc123@gmail.com",
@@ -26,7 +26,6 @@ const emails = [
   "info@innovativeideas.com",
   "support@techsolutions.com",
   "contact@futurevision.com",
-  "admin@digitalworld.com",
 ];
 
 const EventShare = () => {

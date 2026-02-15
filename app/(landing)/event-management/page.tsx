@@ -262,7 +262,7 @@ const EventManagement = () => {
                     <div
                       key={index}
                       className="flex items-center gap-4 bg-[#f2ecea] p-3 rounded-xl cursor-pointer"
-                      onClick={() => router.push(`/event/details/${item.id}`)}
+                      onClick={() => router.push(`/event-management/${item.id}`)}
                     >
                       <div
                         onClick={(e) => e.stopPropagation()}
