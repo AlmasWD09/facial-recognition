@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import Cookies from "js-cookie";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { sign_In } from "@/lib/schema";
 
 import { Suspense } from "react";
@@ -32,6 +31,21 @@ function Login() {
   });
 
   const handleSubmit = async (values: FieldValues) => {
+    // console.log(values);
+    const loginInfo = {
+      email: values.email,
+    };
+
+    const loginData = Cookies.get("loginInfo");
+    const convertLoginData = loginData ? JSON.parse(loginData) : null;
+    // console.log(convertLoginData)
+    if (convertLoginData) {
+      Cookies.remove("loginInfo");
+    }
+    Cookies.set("loginInfo", JSON.stringify(loginInfo));
+    from.reset();
+    router.push('/event-management')
+
     // const formData = new FormData();
     // formData.append("email", values?.email);
     // formData.append("password", values?.password);

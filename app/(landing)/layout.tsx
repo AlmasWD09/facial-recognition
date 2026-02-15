@@ -10,15 +10,15 @@ interface childrenProps {
 
 export default function LandingPageLayout({ children }: childrenProps) {
   const pathname = usePathname();
-  const isPaymentSuccessPage = pathname === "/" || "/event-management";
-  // const isPaymentSuccessPage = pathname === "/payment-success";
+  const isNavbarHidden = pathname === "/" || "/event-management";
+  const isFooterHidden = pathname === "/event-management";
 
   return (
     <>
       <div className="min-h-screen flex flex-col">
-       {!isPaymentSuccessPage && <Navbar />} 
+       {!isNavbarHidden && <Navbar />} 
         <main className="flex-1">{children}</main>
-       {!isPaymentSuccessPage && <Footer /> }
+       {!isFooterHidden && <Footer /> }
       </div>
     </>
   );

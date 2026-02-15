@@ -307,3 +307,12 @@ export const add_custom_quote_sc = z.object({
 export const add_service_quote_sc = z.object({
   message: z.string().nonempty("Message  is required"),
 });
+
+export const create_event = z.object({
+  event_name: z.string().optional(),
+  event_date: z.string().optional(),
+  event_location: z.string().optional(),
+  // event_name: z.string().nonempty("Event name  is required"),
+  // event_date: z.string().nonempty("Event date  is required"),
+  // event_location: z.string().nonempty("Event location  is required"),
+});

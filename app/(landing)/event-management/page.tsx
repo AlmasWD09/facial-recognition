@@ -1,12 +1,31 @@
-"use client"
+"use client";
 
 import { Setting_Nav_Icon } from "@/app/icon";
 import photo1 from "@/public/banner-bg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const EventManagement = () => {
-    const router = useRouter()
+  const router = useRouter();
+
+  const selectedPlanData = Cookies.get("selectedPlan");
+  const convertselectedPlanData = selectedPlanData
+    ? JSON.parse(selectedPlanData)
+    : null;
+
+  const handleNavigate = () => {
+    if (convertselectedPlanData) {
+      router.push("/create-event");
+    } else {
+      router.push("/subscription-purchase");
+    }
+  };
+
+  const handleNavigateEventPage = () => {
+    router.push("/event-management");
+  };
+
   return (
     <div
       className="min-h-screen"
@@ -24,7 +43,8 @@ const EventManagement = () => {
           <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
             <button
               type="button"
-              className="rounded-lg bg-white px-4 py-2 font-medium"
+              className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
+              onClick={() => handleNavigateEventPage()}
             >
               <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
                 Event management
@@ -33,9 +53,9 @@ const EventManagement = () => {
           </div>
 
           {/* Settings Icon */}
-          <button 
-          onClick={()=> router.push('/settings')}
-          className="cursor-pointer"
+          <button
+            onClick={() => router.push("/settings")}
+            className="cursor-pointer"
           >
             <Setting_Nav_Icon />
           </button>
@@ -66,7 +86,9 @@ const EventManagement = () => {
               {/* Gradient Border Button */}
               <div className="w-full shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] rounded-lg">
                 <button
+                  onClick={() => handleNavigate()}
                   className="
+                    cursor-pointer
                     w-full
                     bg-white
                     px-8
