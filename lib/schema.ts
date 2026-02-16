@@ -13,7 +13,7 @@ export const sign_In = z.object({
   password: z
     .string()
     .nonempty("Password is required")
-    .min(8, "Password must be at least 8 characters long"),
+    .min(6, "Password must be at least 6 characters long"),
 });
 
 
@@ -30,11 +30,11 @@ export const register =z.object({
  password: z
       .string()
       .nonempty("Password is required")
-      .min(8, "Password must be at least 8 characters long"),
+      .min(6, "Password must be at least 6 characters long"),
     password_confirmation: z
       .string()
       .nonempty("Confirm Password is required")
-      .min(8, "Password must be at least 8 characters long"),
+      .min(6, "Password must be at least 6 characters long"),
       role : z.string().optional(),
   })
   .refine((value) => value.password === value.password_confirmation, {
@@ -68,19 +68,50 @@ export const new_Pass = z
     password: z
       .string()
       .nonempty("Password is required")
-      .min(8, "Password must be at least 8 characters long"),
+      .min(6, "Password must be at least 6 characters long"),
     password_confirmation: z
       .string()
       .nonempty("Confirm Password is required")
-      .min(8, "Password must be at least 8 characters long"),
+      .min(6, "Password must be at least 6 characters long"),
   })
   .refine((value) => value.password === value.password_confirmation, {
     path: ["password_confirmation"],
     message: "Passwords must be match.",
   });
 
-export const new_addOn = z.object({
+
+//=== profile changes passowrd ====
+export const profile_change_Pass = z
+  .object({
+    current_password: z
+      .string()
+      .nonempty("Current password is required")
+      .min(6, "Current password must be at least 6 characters long"),
+
+    new_password: z
+      .string()
+      .nonempty("New password is required")
+      .min(6, "New password must be at least 6 characters long"),
+
+    confirm_password: z
+      .string()
+      .nonempty("Confirm password is required")
+      .min(6, "Confirm password must be at least 6 characters long"),
+  })
+  .refine((data) => data.new_password === data.confirm_password, {
+    path: ["confirm_password"],
+    message: "New password and confirm password must be match",
+  });
+
+// ==== profile change  ====
+  export const new_addOn = z.object({
   name: z.string().nonempty("Add-on name is required"),
+});
+
+
+
+export const profile_change = z.object({
+  name: z.string().optional(),
 });
 
 //  === change_pass ===
@@ -90,11 +121,11 @@ export const change_Pass = z
     new_password: z
       .string()
       .nonempty("Password is required")
-      .min(8, "Password must be at least 8 characters long"),
+      .min(6, "Password must be at least 6 characters long"),
     c_password: z
       .string()
       .nonempty("Confirm Password is required")
-      .min(8, "Password must be at least 8 characters long"),
+      .min(6, "Password must be at least 6 characters long"),
   })
   .refine((value) => value.new_password === value.c_password, {
     path: ["c_password"],

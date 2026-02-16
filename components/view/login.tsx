@@ -104,7 +104,7 @@ function Login() {
             />
 
             <div className="flex items-center justify-between mt-2 text-sm">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 mt-2">
                 <Checkbox id="remember-me" />
                 <Label htmlFor="remember-me" className="font-normal">
                   <span className="TextGradientTwo">Remember me</span>

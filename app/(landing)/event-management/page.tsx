@@ -226,18 +226,18 @@ const EventManagement = () => {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row  items-center gap-2 mt-10 md:mt-0 md:mr-20">
+          <div className="flex flex-col md:flex-row  items-center gap-2 mt-10 md:mt-0 ">
             {eventData?.length > 0 && (
-              <Button
+              <button
                 onClick={() => router.push("/create-event")}
                 style={{
                   background:
                     "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
                 }}
-                className="cursor-pointer w-full  rounded-lg text-white h-11 font-semibold"
+                className="cursor-pointer flex items-center gap-2 w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base text-white font-medium"
               >
                 Create new event
-              </Button>
+              </button>
             )}
             <button
               onClick={() => router.push("/settings")}
