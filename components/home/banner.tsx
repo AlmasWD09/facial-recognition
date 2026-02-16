@@ -31,11 +31,23 @@ export default function Banner() {
                 Smart AI that finds your photos in seconds without the endless
                 scrolling.
               </p>
-              <div className="w-fit"
-              onClick={()=> router.push('/')}
-              >
-                <CustomButton2
-                text="Create an event" className="px-8" />
+              <div className="w-fit">
+                <Button
+                  onClick={() => router.push("/create-event")}
+                  style={{
+                    background:
+                      "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
+                    padding: "10px 20px",
+                    border: "none",
+                    borderRadius: "8px",
+                    fontSize: "20px",
+                    color: "white",
+                    cursor: "pointer",
+                  }}
+                  className="cursor-pointer w-full rounded-sm  text-white h-11"
+                >
+                  Create an event
+                </Button>
               </div>
             </div>
 
@@ -62,33 +74,27 @@ export default function Banner() {
                 height={100}
                 className="w-7.5 h-7.5 object-cover rounded"
               />
-              <h2 className="text-[#5D5D5D] text-base ">
-                Take a Selfie
-              </h2>
+              <h2 className="text-[#5D5D5D] text-base ">Take a Selfie</h2>
             </div>
             <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
               <Image
-           src="/banner/category02.png"
+                src="/banner/category02.png"
                 alt="photo"
                 width={100}
                 height={100}
                 className="w-7.5 h-7.5 object-cover rounded"
               />
-              <h2 className="text-[#5D5D5D] text-base ">
-                See your photos
-              </h2>
+              <h2 className="text-[#5D5D5D] text-base ">See your photos</h2>
             </div>
             <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
               <Image
-               src="/banner/category03.png"
+                src="/banner/category03.png"
                 alt="photo"
                 width={100}
                 height={100}
                 className="w-7.5 h-7.5 object-cover rounded"
               />
-              <h2 className="text-[#5D5D5D] text-base ">
-                Download
-              </h2>
+              <h2 className="text-[#5D5D5D] text-base ">Download</h2>
             </div>
           </div>
         </div>

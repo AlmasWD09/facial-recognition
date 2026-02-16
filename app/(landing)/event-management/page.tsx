@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 const eventData = [
@@ -122,7 +121,7 @@ const EventManagement = () => {
     ? JSON.parse(selectedPlanData)
     : null;
 
-  const handleNavigate = () => {
+  const handleCreateNewEvent = () => {
     if (convertselectedPlanData) {
       router.push("/create-event");
     } else {
@@ -149,13 +148,15 @@ const EventManagement = () => {
     });
   };
 
-  const hanldeEditPage = (text: string) => {
+  const hanldeEventNavigate = (text: string) => {
     if (selectedId && text === "edit") {
-      router.push(`/edit-event?editId=${selectedId}`);
+      router.push(`/edit-event?eventId=${selectedId}`);
     } else if (selectedId && text === "share") {
-     router.push(`/event-share`);
+      router.push(`/event-share?eventId=${selectedId}`);
     }
   };
+
+  const isDisabled = selectedIndexes.length > 1;
 
   // const eventData = 0 || [];
 
@@ -186,32 +187,43 @@ const EventManagement = () => {
               </button>
             </div>
 
-            {selectedIndexes.length < 2 && (
-              <>
-                <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
-                  <button
-                    type="button"
-                    onClick={() => hanldeEditPage("share")}
-                    className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
-                  >
-                    <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
-                      Share
-                    </span>
-                  </button>
-                </div>
-                <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
-                  <button
-                    type="button"
-                    onClick={() => hanldeEditPage("edit")}
-                    className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
-                  >
-                    <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
-                      Edit
-                    </span>
-                  </button>
-                </div>
-              </>
-            )}
+            {/* <div
+              className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px ${
+                isDisabled ? "opacity-50 cursor-default" : ""
+              }`}
+            >
+              <button
+                type="button"
+                disabled={isDisabled}
+                onClick={() => hanldeEventNavigate("share")}
+                className={`rounded-lg bg-white px-4 py-2 font-medium ${
+                  isDisabled ? "cursor-default" : "cursor-pointer"
+                }`}
+              >
+                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                  Share
+                </span>
+              </button>
+            </div> */}
+            <div
+              className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px ${
+                isDisabled ? "opacity-50 cursor-default" : ""
+              }`}
+            >
+              <button
+                type="button"
+                disabled={isDisabled}
+                onClick={() => hanldeEventNavigate("edit")}
+                className={`rounded-lg bg-white px-4 py-2 font-medium ${
+                  isDisabled ? "cursor-default" : "cursor-pointer"
+                }`}
+              >
+                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                  Edit
+                </span>
+              </button>
+            </div>
+
             {/* delete */}
             <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
               <button
@@ -229,7 +241,7 @@ const EventManagement = () => {
           <div className="flex flex-col md:flex-row  items-center gap-2 mt-10 md:mt-0 ">
             {eventData?.length > 0 && (
               <button
-                onClick={() => router.push("/create-event")}
+                onClick={() => handleCreateNewEvent()}
                 style={{
                   background:
                     "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
@@ -262,7 +274,9 @@ const EventManagement = () => {
                     <div
                       key={index}
                       className="flex items-center gap-4 bg-[#f2ecea] p-3 rounded-xl cursor-pointer"
-                      onClick={() => router.push(`/event-management/${item.id}`)}
+                      onClick={() =>
+                        router.push(`/event-management/${item.id}`)
+                      }
                     >
                       <div
                         onClick={(e) => e.stopPropagation()}
@@ -307,7 +321,7 @@ const EventManagement = () => {
                   </p>
                   <div className="w-full shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] rounded-lg">
                     <button
-                      onClick={() => handleNavigate()}
+                      onClick={() => handleCreateNewEvent()}
                       className="
                     cursor-pointer
                     w-full

@@ -74,13 +74,15 @@ const DetailsPage = () => {
     });
   };
 
-  const hanldeEditPage = (text: string) => {
+  const hanldeEventNavigate = (text: string) => {
     if (selectedId && text === "edit") {
-      router.push(`/edit-event?editId=${selectedId}`);
-    } else if (selectedId && text === "swap") {
-      router.push(`/`);
+      router.push(`/edit-event?eventId=${selectedId}`);
+    } else if (selectedId && text === "share") {
+      router.push(`/event-share?eventId=${selectedId}`);
     }
   };
+
+  const isDisabled = selectedIndexes.length > 1;
 
   // const eventData = 0 || [];
 
@@ -111,32 +113,43 @@ const DetailsPage = () => {
               </button>
             </div>
 
-            {selectedIndexes.length < 2 && (
-              <>
-                <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
-                  <button
-                    type="button"
-                    onClick={() => hanldeEditPage("swap")}
-                    className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
-                  >
-                    <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
-                      Swap
-                    </span>
-                  </button>
-                </div>
-                <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
-                  <button
-                    type="button"
-                    onClick={() => hanldeEditPage("edit")}
-                    className="cursor-pointer rounded-lg bg-white px-4 py-2 font-medium"
-                  >
-                    <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
-                      Edit
-                    </span>
-                  </button>
-                </div>
-              </>
-            )}
+            <div
+              className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px ${
+                isDisabled ? "opacity-50 cursor-default" : ""
+              }`}
+            >
+              <button
+                type="button"
+                disabled={isDisabled}
+                onClick={() => hanldeEventNavigate("share")}
+                className={`rounded-lg bg-white px-4 py-2 font-medium ${
+                  isDisabled ? "cursor-default" : "cursor-pointer"
+                }`}
+              >
+                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                  Share
+                </span>
+              </button>
+            </div>
+            <div
+              className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px ${
+                isDisabled ? "opacity-50 cursor-default" : ""
+              }`}
+            >
+              <button
+                type="button"
+                disabled={isDisabled}
+                onClick={() => hanldeEventNavigate("edit")}
+                className={`rounded-lg bg-white px-4 py-2 font-medium ${
+                  isDisabled ? "cursor-default" : "cursor-pointer"
+                }`}
+              >
+                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                  Edit
+                </span>
+              </button>
+            </div>
+
             {/* delete */}
             <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
               <button
@@ -205,10 +218,14 @@ const DetailsPage = () => {
                       className="object-cover "
                     />
 
-
                     <div className="absolute right-2 top-2 ">
                       <div className="border border-orange-400 flex justify-center items-center p-1 rounded">
-                        <Checkbox />
+                        <Checkbox
+                          id={`event-${item.id}`}
+                          onCheckedChange={(checked) =>
+                            handleCheckbox(index, item.id, checked as boolean)
+                          }
+                        />
                       </div>
                     </div>
                   </div>

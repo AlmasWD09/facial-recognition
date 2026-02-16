@@ -4,9 +4,8 @@ import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import IconBox from "../resuable/Icon-box";
 import FavIcon from "@/app/favicon/favicon";
-import { Button } from "../ui/button";
+
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -27,7 +26,7 @@ export default function Navbar() {
           {/* Logo **/}
           <Link href={"/"}>
             <Image
-              src="/logo.png"
+              src="/logo1.png"
               alt="photo"
               width={100}
               height={100}

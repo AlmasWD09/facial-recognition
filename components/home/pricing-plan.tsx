@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import CustomButton2 from "../resuable/customButton/customButton2";
 import SubTitle from "../shared/title/title";
 import photo1 from "@/public/left.png";
+import { Button } from "../ui/button";
 
 const PricingPlan = () => {
   const router = useRouter();
@@ -52,9 +53,24 @@ const PricingPlan = () => {
           </div>
 
           <div className="flex justify-center items-center pt-20">
-            <div className="w-fit flex" onClick={() => router.push("/")}>
-              <CustomButton2 text="Manage plan" className="px-8" />
-            </div>
+            <div className="w-fit">
+                <Button
+                  onClick={() => router.push("/subscription-purchase")}
+                  style={{
+                    background:
+                      "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
+                    padding: "10px 20px",
+                    border: "none",
+                    borderRadius: "8px",
+                    fontSize: "20px",
+                    color: "white",
+                    cursor: "pointer",
+                  }}
+                  className="cursor-pointer w-full rounded-sm  text-white h-11"
+                >
+                  Manage plan
+                </Button>
+              </div>
           </div>
 
           <div className="flex justify-center items-center mt-4">

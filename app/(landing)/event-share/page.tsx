@@ -121,6 +121,8 @@ const EventShare = () => {
                 </div>
               </>
             )}
+
+            
             {/* delete */}
             <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
               <button
@@ -171,7 +173,7 @@ const EventShare = () => {
                     checked={switchValue}
                     onCheckedChange={handleSwitchChange}
                   />
-                  <span>{switchValue ? "Active" : "Inactive"}</span>
+                  <span>{switchValue ? "Private" : "Public"}</span>
                 </div>
               </div>
             </div>

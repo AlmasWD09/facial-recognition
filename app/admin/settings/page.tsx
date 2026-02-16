@@ -17,7 +17,7 @@ import { FieldValues, useForm } from "react-hook-form";
 
 // Tabs for navigation
 const tabs = [
-  { id: "personal", label: "Personal Info" },
+  { id: "personal", label: "Personal Information" },
   { id: "terms", label: "Terms & Conditions" },
   { id: "privacy", label: "Privacy Policy" },
   { id: "faq", label: "FAQ" },

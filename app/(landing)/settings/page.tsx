@@ -156,6 +156,7 @@ const SettingsPage = () => {
 
           <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-auto py-2 mt-2 md:mt-0">
             <button
+            onClick={()=> router.push('/subscription-management')}
               style={{
                 background:
                   "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",

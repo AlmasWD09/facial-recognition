@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Image
-                src="/logo.png"
+                src="/logo1.png"
                 alt="photo"
                 width={100}
                 height={100}

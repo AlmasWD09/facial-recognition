@@ -5,14 +5,14 @@ import SubTitle from "../shared/title/title";
 import Image from "next/image";
 import CustomButton2 from "../resuable/customButton/customButton2";
 import { useRouter } from "next/navigation";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Button } from "../ui/button";
 
 const HowWorks = () => {
   const router = useRouter();
@@ -47,7 +47,6 @@ const HowWorks = () => {
         "User can share image with guest user via their email addresses.",
     },
   ];
-
 
   return (
     <>
@@ -110,8 +109,23 @@ const HowWorks = () => {
         </div>
 
         <div className="flex justify-center items-center pt-20">
-          <div className="w-fit flex" onClick={() => router.push("/")}>
-            <CustomButton2 text="Create an event" className="px-8" />
+          <div className="w-fit">
+            <Button
+              onClick={() => router.push("/create-event")}
+              style={{
+                background:
+                  "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "8px",
+                fontSize: "20px",
+                color: "white",
+                cursor: "pointer",
+              }}
+              className="cursor-pointer w-full rounded-sm  text-white h-11"
+            >
+              Create an event
+            </Button>
           </div>
         </div>
       </div>
