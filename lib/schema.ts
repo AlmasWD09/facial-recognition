@@ -362,4 +362,7 @@ export const add_event_photo = z.object({
 export const edit_event_photo = z.object({
    image: z.any().optional(),
 });
+export const event_share_email = z.object({
+   email: z.any().optional(),
+});
 

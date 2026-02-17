@@ -14,7 +14,13 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { ChangeEvent, ClipboardEvent, KeyboardEvent, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  ClipboardEvent,
+  KeyboardEvent,
+  useRef,
+  useState,
+} from "react";
 import BackButton from "@/components/shared/back-button";
 import { Switch } from "@/components/ui/switch";
 import { LinkIcon } from "lucide-react";
@@ -33,12 +39,38 @@ const emails = [
 
 const EventShare = () => {
   const router = useRouter();
-    const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
+  const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
   const inputRefs = useRef<HTMLInputElement[]>([]);
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [switchValue, setSwitchValue] = useState<boolean>(false);
+  const [tags, setTags] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState("");
 
+  console.log(tags);
+  console.log("input ----> ", inputValue);
+
+  // ======== tags input =============== //
+  const addTag = () => {
+    const value = inputValue.trim();
+    if (!value) return;
+    if (tags.includes(value)) return;
+
+    setTags([...tags, value]);
+    setInputValue("");
+  };
+
+  const removeTag = (tag: string) => {
+    setTags(tags.filter((t) => t !== tag));
+  };
+
+  const handleKeyDown2 = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addTag();
+    }
+  };
+  // ======== tags input =============== //
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const value = e.target.value;
@@ -53,7 +85,7 @@ const EventShare = () => {
     }
   };
 
-   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
@@ -68,7 +100,6 @@ const EventShare = () => {
       inputRefs.current[5]?.focus();
     }
   };
-
 
   const handleNavigateEventPage = () => {
     router.push("/event-management");
@@ -197,19 +228,18 @@ const EventShare = () => {
             </div>
 
             {/* *** */}
-            <div className="flex flex-col lg:flex-row justify-between gap-3 mt-8">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-3 mt-8">
               {/* Event Link Section */}
               <div className="w-full flex flex-col space-y-2 border border-gray-200 p-4 rounded-xl">
                 <div>
                   <div className="font-semibold text-gray-700 ">Event link</div>
                   <div className="flex flex-col md:flex-row items-end md:items-center gap-2">
                     <div className="flex-1 flex items-center gap-2  border border-gray-200 rounded-lg px-3 py-2">
-                      <LinkIcon className="w-4 h-4 text-gray-400" />
                       <input
                         type="text"
                         value="http://lldg.l.ab/uskyfirlfte"
                         readOnly
-                        className="h-6 flex-1 bg-transparent text-sm text-gray-600 outline-none"
+                        className="h-6 flex-1 bg-transparent text-sm text-[#299847] outline-none"
                       />
                     </div>
                     <div>
@@ -234,17 +264,35 @@ const EventShare = () => {
 
                 <div>
                   <div className="font-semibold text-gray-700">Guest Email</div>
-                  <div className="flex flex-col md:flex-row items-end md:items-center gap-2">
-                    <div className="flex-1 flex items-center gap-2 bg-[#DEDEDE33] border border-gray-200 rounded-lg px-3 py-2">
-                      <EmailIcon className="w-4 h-4 text-gray-400" />
+                  <div className="flex flex-col">
+                    <div className="w-full border rounded-md p-2 flex flex-wrap gap-2">
+                      {/* Tag Items */}
+                      {tags.map((tag) => (
+                        <div
+                          key={tag}
+                          className="flex items-center bg-gray-200 px-2 py-1 rounded"
+                        >
+                          <span className="text-sm text-wrap">{tag}</span>
+
+                          <button
+                            onClick={() => removeTag(tag)}
+                            className="ml-2 text-red-500"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+
+                      {/* Input */}
                       <input
-                        type="text"
-                        value="example@gmail.com"
-                        readOnly
-                        className="h-6 flex-1 bg-transparent text-sm text-gray-600 outline-none"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        onKeyDown={handleKeyDown2}
+                        placeholder="Enter email..."
+                        className="flex-1 outline-none"
                       />
                     </div>
-                    <div>
+                    <div className="mt-4 flex justify-end">
                       <Button
                         style={{
                           background:
@@ -256,7 +304,7 @@ const EventShare = () => {
                           color: "white",
                           cursor: "pointer",
                         }}
-                        className="cursor-pointer w-full rounded-sm  text-white h-11"
+                        className="cursor-pointer w-fit rounded-sm  text-white h-11"
                       >
                         Send invite
                       </Button>
@@ -293,7 +341,6 @@ const EventShare = () => {
                         />
                       ))}
                     </div>
-
                   </CardContent>
 
                   {/* Action Buttons */}
@@ -353,6 +400,8 @@ const EventShare = () => {
                 </div>
               </div>
             </div>
+
+
 
             {/* **** */}
             <div className="space-y-0 p-4 bg-[#DEDEDE33] rounded-xl mt-8 overflow-x-auto">
