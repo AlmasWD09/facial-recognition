@@ -340,9 +340,6 @@ export const add_service_quote_sc = z.object({
 });
 
 export const create_event = z.object({
-  image: z
-    .any()
-    .refine((file) => file instanceof File, { message: "image is required" }),
   event_name: z.string().optional(),
   event_date: z.string().optional(),
   event_location: z.string().optional(),
@@ -351,9 +348,18 @@ export const create_event = z.object({
   // event_location: z.string().nonempty("Event location  is required"),
 });
 export const edit_event = z.object({
-   image: z.any().optional(),
   event_name: z.string().optional(),
   event_date: z.string().optional(),
   event_location: z.string().optional(),
-
 });
+
+
+export const add_event_photo = z.object({
+   image: z
+    .any()
+    .refine((file) => file instanceof File, { message: "image is required" }),
+});
+export const edit_event_photo = z.object({
+   image: z.any().optional(),
+});
+

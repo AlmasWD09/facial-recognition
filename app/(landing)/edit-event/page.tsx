@@ -5,49 +5,32 @@ import { FromInput } from "@/components/resuable/form-input";
 import Form from "@/components/resuable/from";
 import DatePickerCompo from "@/components/shared/datePicker/DatePickerCompo";
 import { Button } from "@/components/ui/button";
-import { create_event, edit_event } from "@/lib/schema";
+import { edit_event } from "@/lib/schema";
 import photo1 from "@/public/banner-bg.png";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CircleAlert, X } from "lucide-react";
-import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 const EditEvent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
 
   const editId = searchParams.get("editId");
 
   const from = useForm({
     resolver: zodResolver(edit_event),
     defaultValues: {
-      image: null as File | null,
       event_name: "",
       event_date: "",
       event_location: "",
     },
   });
-const { setValue, reset } = from;
 
 
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setSelectedFile(file);
-      setImagePreview(URL.createObjectURL(file));
-      setValue("image", file, { shouldValidate: true });
-    }
-  };
 
-  const removeImage = () => {
-    setImagePreview(null);
-    setSelectedFile(null);
-    setValue("image", undefined, { shouldValidate: true });
-  };
+
+
 
   const handleSubmit = async (values: FieldValues) => {
     console.log(values);
@@ -114,60 +97,6 @@ const { setValue, reset } = from;
                 from={from}
                 onSubmit={handleSubmit}
               >
-
-                <div className="">
-                  <p className="pb-1 text-start font-semibold">Event Image</p>
-                  {imagePreview ? (
-                    <div className="flex flex-col ">
-                      <div className="relative h-25.5 w-75 flex justify-center">
-                        <div className=" flex justify-end overflow-hidden bg-secondary rounded-lg ">
-                          <div className="h-25.5 w-75">
-                            <Image
-                              src={imagePreview}
-                              alt="photo"
-                              fill
-                              className=" object-cover rounded-lg"
-                            />
-                          </div>
-                          <button
-                            type="button"
-                            onClick={removeImage}
-                            className="cursor-pointer absolute -top-1 -right-1 rounded-full bg-red-500 p-1 text-white hover:bg-red-600 transition-colors"
-                          >
-                            <X className=" h-4 w-4" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <label
-                        htmlFor="image"
-                        className="flex h-25.5 w-75 cursor-pointer flex-col items-center justify-center rounded-lg  bg-secondary/70 text-secondary transition-colors hover:bg-secondary"
-                      >
-                        <span>
-                          <Upload_cc_Icon />
-                        </span>
-                      </label>
-                    </div>
-                  )}
-                  {from?.formState?.errors?.image && (
-                    <p className="text-[#f73f4e] mt-1 flex items-center gap-1 text-sm">
-                      {from?.formState?.errors?.image?.message as string}
-                      <CircleAlert size={14} />
-                    </p>
-                  )}
-                  <input
-                    type="file"
-                    id="image"
-                    className="hidden"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                  />
-                </div>
-
-
-
 
                 <FromInput
                   className="h-11 w-full"

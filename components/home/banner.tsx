@@ -1,14 +1,25 @@
 "use client";
 
-import CustomButton from "@/components/resuable/customButton/customButton";
-import CustomButton2 from "@/components/resuable/customButton/customButton2";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import photo1 from "@/public/banner-bg.png";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Banner() {
   const router = useRouter();
+
+  const selectedPlanData = Cookies.get("selectedPlan");
+  const convertselectedPlanData = selectedPlanData
+    ? JSON.parse(selectedPlanData)
+    : null;
+  const handleCreateEvent = () => {
+    if (convertselectedPlanData) {
+      router.push("/create-event");
+    } else {
+      router.push("/subscription-purchase");
+    }
+  };
 
   return (
     <>
@@ -33,7 +44,7 @@ export default function Banner() {
               </p>
               <div className="w-fit">
                 <Button
-                  onClick={() => router.push("/create-event")}
+                  onClick={() => handleCreateEvent()}
                   style={{
                     background:
                       "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",

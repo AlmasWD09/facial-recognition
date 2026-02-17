@@ -7,6 +7,7 @@ import CustomButton2 from "../resuable/customButton/customButton2";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
+import Cookies from "js-cookie";
 
 // Import Swiper styles
 import "swiper/css";
@@ -16,6 +17,18 @@ import { Button } from "../ui/button";
 
 const HowWorks = () => {
   const router = useRouter();
+
+  const selectedPlanData = Cookies.get("selectedPlan");
+  const convertselectedPlanData = selectedPlanData
+    ? JSON.parse(selectedPlanData)
+    : null;
+  const handleCreateEvent = () => {
+    if (convertselectedPlanData) {
+      router.push("/create-event");
+    } else {
+      router.push("/subscription-purchase");
+    }
+  };
 
   const slides = [
     {
@@ -111,7 +124,7 @@ const HowWorks = () => {
         <div className="flex justify-center items-center pt-20">
           <div className="w-fit">
             <Button
-              onClick={() => router.push("/create-event")}
+               onClick={() => handleCreateEvent()}
               style={{
                 background:
                   "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",

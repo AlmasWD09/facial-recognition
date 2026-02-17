@@ -254,5 +254,5 @@ background: linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%);
 
 /* Toggle button active color */
 .data-\[state\=checked\]\:bg-primary[data-state="checked"] {
-    background-color: green;
+    background: linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%);
 }

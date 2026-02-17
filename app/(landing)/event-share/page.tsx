@@ -14,10 +14,13 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { ChangeEvent, ClipboardEvent, KeyboardEvent, useRef, useState } from "react";
 import BackButton from "@/components/shared/back-button";
 import { Switch } from "@/components/ui/switch";
 import { LinkIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 const emails = [
   "abc123@gmail.com",
@@ -30,22 +33,42 @@ const emails = [
 
 const EventShare = () => {
   const router = useRouter();
+    const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
+  const inputRefs = useRef<HTMLInputElement[]>([]);
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [switchValue, setSwitchValue] = useState<boolean>(false);
 
-  const selectedPlanData = Cookies.get("selectedPlan");
-  const convertselectedPlanData = selectedPlanData
-    ? JSON.parse(selectedPlanData)
-    : null;
 
-  const handleNavigate = () => {
-    if (convertselectedPlanData) {
-      router.push("/create-event");
-    } else {
-      router.push("/subscription-purchase");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value) && value.length <= 1) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+
+      if (value && index < 5) {
+        inputRefs.current[index + 1]?.focus();
+      }
     }
   };
+
+   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const pasteData = e.clipboardData.getData("text").trim();
+    if (/^\d{6}$/.test(pasteData)) {
+      const newOtp = pasteData.split("");
+      setOtp(newOtp);
+      inputRefs.current[5]?.focus();
+    }
+  };
+
 
   const handleNavigateEventPage = () => {
     router.push("/event-management");
@@ -122,7 +145,6 @@ const EventShare = () => {
               </>
             )}
 
-            
             {/* delete */}
             <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
               <button
@@ -149,10 +171,6 @@ const EventShare = () => {
           </div>
         </div>
 
-
-
-
-
         {/* Gradient Border Card */}
         <div className="">
           <div
@@ -177,8 +195,6 @@ const EventShare = () => {
                 </div>
               </div>
             </div>
-
-
 
             {/* *** */}
             <div className="flex flex-col lg:flex-row justify-between gap-3 mt-8">
@@ -249,24 +265,36 @@ const EventShare = () => {
                 </div>
               </div>
 
-
-
-
               {/* Code Section */}
               <div className="w-full border border-gray-200 p-4 rounded-xl ">
                 <div className="font-semibold text-gray-700 mb-2">Code</div>
                 <div className="">
                   {/* Code Display Boxes */}
-                  <div className="flex-1 flex gap-2 md:gap-10">
-                    {[2, 0, 0, 0, 0, 0].map((digit, idx) => (
-                      <div
-                        key={idx}
-                        className="w-10 h-10 md:w-22 md:h-14 flex items-center justify-center bg-gray-50 border border-gray-200 rounded-lg text-lg font-semibold text-gray-700"
-                      >
-                        {digit}
-                      </div>
-                    ))}
-                  </div>
+                  <CardContent>
+                    <div className=" flex gap-2 md:gap-10 mb-2">
+                      {otp.map((digit, index) => (
+                        <Input
+                          key={index}
+                          id={`otp-input-${index}`}
+                          type="text"
+                          maxLength={1}
+                          value={digit}
+                          onChange={(e) => handleChange(e, index)}
+                          onKeyDown={(e) => handleKeyDown(e, index)}
+                          onPaste={handlePaste}
+                          ref={(el) => {
+                            if (el) inputRefs.current[index] = el;
+                          }}
+                          className={cn(
+                            "w-10 h-10 md:w-20 md:h-14 text-center text-lg font-medium border-gray-300",
+                            "",
+                            digit && "",
+                          )}
+                        />
+                      ))}
+                    </div>
+
+                  </CardContent>
 
                   {/* Action Buttons */}
                   <div className="grid grid-cols-3 gap-3 mt-4">
@@ -325,10 +353,6 @@ const EventShare = () => {
                 </div>
               </div>
             </div>
-
-
-
-
 
             {/* **** */}
             <div className="space-y-0 p-4 bg-[#DEDEDE33] rounded-xl mt-8 overflow-x-auto">

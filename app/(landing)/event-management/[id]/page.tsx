@@ -1,14 +1,17 @@
 "use client";
 
-import { Event_logo_Icon, Setting_Nav_Icon } from "@/app/icon";
+import { Setting_Nav_Icon, Share_ac_Icon } from "@/app/icon";
 import photo1 from "@/public/banner-bg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import BackButton from "@/components/shared/back-button";
+import { useGlobalState } from "@/app/hooks";
+import AddEventImage from "@/components/modal/upload-event-image-modal/addEventImage";
+import EditEventImage from "@/components/modal/upload-event-image-modal/editEventImage";
 
 const galleryData = [
   { id: 1, image: "/gallery/photo01.png" },
@@ -21,10 +24,24 @@ const galleryData = [
   { id: 8, image: "/gallery/photo08.png" },
 ];
 
+interface GlobalState {
+  isAdd: boolean;
+  isEdit: boolean;
+}
+
+const intState: GlobalState = {
+  isAdd: false,
+  isEdit: false,
+};
+
 const DetailsPage = () => {
   const router = useRouter();
+  const [addEventModal, setAddEventModal] = useGlobalState(intState);
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [editId, setEditId] = useState<number | null>(null);
 
   const getLayoutClass = (index: number) => {
     const patterns = [
@@ -40,19 +57,6 @@ const DetailsPage = () => {
     ];
 
     return patterns[index % patterns.length];
-  };
-
-  const selectedPlanData = Cookies.get("selectedPlan");
-  const convertselectedPlanData = selectedPlanData
-    ? JSON.parse(selectedPlanData)
-    : null;
-
-  const handleNavigate = () => {
-    if (convertselectedPlanData) {
-      router.push("/create-event");
-    } else {
-      router.push("/subscription-purchase");
-    }
   };
 
   const handleNavigateEventPage = () => {
@@ -98,7 +102,7 @@ const DetailsPage = () => {
     >
       <div className="container mx-auto px-4 py-4 ">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-5  ">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-5 ">
           <div className="flex flex-col md:flex-row items-center gap-2">
             {/* event management */}
             <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
@@ -113,6 +117,7 @@ const DetailsPage = () => {
               </button>
             </div>
 
+            {/* Edit */}
             <div
               className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px ${
                 isDisabled ? "opacity-50 cursor-default" : ""
@@ -121,25 +126,9 @@ const DetailsPage = () => {
               <button
                 type="button"
                 disabled={isDisabled}
-                onClick={() => hanldeEventNavigate("share")}
-                className={`rounded-lg bg-white px-4 py-2 font-medium ${
-                  isDisabled ? "cursor-default" : "cursor-pointer"
-                }`}
-              >
-                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
-                  Share
-                </span>
-              </button>
-            </div>
-            <div
-              className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px ${
-                isDisabled ? "opacity-50 cursor-default" : ""
-              }`}
-            >
-              <button
-                type="button"
-                disabled={isDisabled}
-                onClick={() => hanldeEventNavigate("edit")}
+                onClick={() => {
+                  setAddEventModal("isEdit", true);
+                }}
                 className={`rounded-lg bg-white px-4 py-2 font-medium ${
                   isDisabled ? "cursor-default" : "cursor-pointer"
                 }`}
@@ -162,19 +151,58 @@ const DetailsPage = () => {
                 </span>
               </button>
             </div>
+
+            {/* download */}
+            <div
+              className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px`}
+            >
+              <button
+                type="button"
+                className={`rounded-lg bg-white px-4 py-2 font-medium cursor-pointer`}
+              >
+                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                  Download
+                </span>
+              </button>
+            </div>
           </div>
 
-          <div className="flex flex-col md:flex-row  items-center gap-2 mt-10 md:mt-0 md:mr-20">
-            <Button
-              //   onClick={() => router.push("/create-event")}
+          <div className="flex flex-col md:flex-row  items-center gap-2 mt-10 md:mt-0 ">
+            <button
+              onClick={() => {
+                setAddEventModal("isAdd", true);
+              }}
               style={{
                 background:
                   "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
               }}
-              className="cursor-pointer w-full  rounded-lg text-white h-11 font-semibold"
+              className="cursor-pointer flex items-center gap-2 w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base text-white font-medium"
             >
               Upload image
-            </Button>
+            </button>
+
+            <div
+              className={`inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px ${
+                isDisabled ? "opacity-50 cursor-default" : ""
+              }`}
+            >
+              <button
+                onClick={() => hanldeEventNavigate("share")}
+                disabled={isDisabled}
+                style={{
+                  background:
+                    "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
+                }}
+                className={` flex items-center gap-2 w-fit px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base text-white font-medium ${
+                  isDisabled ? "cursor-default" : "cursor-pointer"
+                }`}
+              >
+                <span className="bg-linear-to-r from-[#FEAC1A] to-[#F84426] bg-clip-text text-transparent">
+                  <Share_ac_Icon />
+                </span>
+              </button>
+            </div>
+
             <button
               onClick={() => router.push("/settings")}
               className="cursor-pointer"
@@ -235,6 +263,22 @@ const DetailsPage = () => {
           </div>
         </div>
       </div>
+
+      {/* add event */}
+      <AddEventImage
+        addEventModal={addEventModal}
+        setAddEventModal={setAddEventModal}
+      />
+      <EditEventImage
+        imagePreview={imagePreview}
+        setImagePreview={setImagePreview}
+        selectedFile={selectedFile}
+        setSelectedFile={setSelectedFile}
+        editId={editId}
+        setEditId={setEditId}
+        addEventModal={addEventModal}
+        setAddEventModal={setAddEventModal}
+      />
     </div>
   );
 };
