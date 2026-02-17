@@ -1,24 +1,20 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { ArrowRight } from "lucide-react";
 
 import Link from "next/link";
 import { register } from "@/lib/schema";
 
-import Cookies from "js-cookie";
 import SubTitle from "../shared/title/title";
 import Form from "../resuable/from";
 import { FromInput } from "../resuable/form-input";
-import { EmailIcon, GoogleIcon, LockIcon, UserIcon } from "@/app/icon";
+import { EmailIcon, LockIcon, UserIcon } from "@/app/icon";
 
 export default function Register() {
   const router = useRouter();
-  const searchParems = useSearchParams();
-  const pathUrl = searchParems.get("redirectTo");
   const from = useForm({
     resolver: zodResolver(register),
     defaultValues: {

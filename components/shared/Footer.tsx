@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
               <Link href="/pricing" className="text-sm text-gray-600">
                 Pricing
               </Link>
-              <Link href="/about" className="text-sm text-gray-600">
+              <Link href="/about-us" className="text-sm text-gray-600">
                 About Us
               </Link>
               <Link href="/faq" className="text-sm text-gray-600">
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
             </h3>
             <div className="flex justify-center space-x-4">
               <a
-                href="https://facebook.com"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=""
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
                 </svg>
               </a>
               <a
-                href="https://google.com"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=""

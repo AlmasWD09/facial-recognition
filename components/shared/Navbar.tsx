@@ -13,15 +13,15 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", icon: "", icon_i: "", href: "/" },
-    { name: "How it works", icon: "", icon_i: "", href: "/" },
-    { name: "Pricing", icon: "", icon_i: "", href: "/" },
-    { name: "About Us", icon: "", icon_i: "", href: "/" },
-    { name: "FAQ", icon: "", icon_i: "", href: "/" },
+    { name: "How it works", icon: "", icon_i: "", href: "/how-it-works" },
+    { name: "Pricing", icon: "", icon_i: "", href: "/pricing" },
+    { name: "About Us", icon: "", icon_i: "", href: "/about-us" },
+    { name: "FAQ", icon: "", icon_i: "", href: "/faq" },
   ];
 
   return (
-    <nav className="bg-[#f6ecdb] container mx-auto  sticky top-0 z-50 rounded-xl">
-      <div className="bg-secondary/40 rounded-xl px-4">
+    <nav className="bg-[#f6ecdb65] container mx-auto  sticky top-0 z-50 rounded-xl">
+      <div className="bg-secondary rounded-xl px-4">
         <div className="flex justify-between items-center h-17.5 py-3">
           {/* Logo **/}
           <Link href={"/"}>
