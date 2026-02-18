@@ -34,6 +34,7 @@ const emails = [
   "hello@creativeoutlook.com",
   "info@innovativeideas.com",
   "support@techsolutions.com",
+  "contact@futurevision.com",
 ];
 
 const EventShare = () => {
@@ -47,19 +48,12 @@ const EventShare = () => {
   const [inputValue, setInputValue] = useState("");
   const [eventLink] = useState("http://lldg.l.ab/uskyfirlfte");
   const [copied, setCopied] = useState(false);
-  const [editingTagIndex, setEditingTagIndex] = useState<number | null>(null);
-  const [editingTagValue, setEditingTagValue] = useState<string>("");
-  const [duplicateEmail, setDuplicateEmail] = useState<string | null>(null);
 
   // ======== tags input =============== //
   const addTag = () => {
     const value = inputValue.trim();
     if (!value) return;
-    if (tags.includes(value)) {
-      setDuplicateEmail(value);
-      setTimeout(() => setDuplicateEmail(null), 1000);
-      return;
-    }
+    if (tags.includes(value)) return;
 
     setTags([...tags, value]);
     setInputValue("");
@@ -110,6 +104,21 @@ const EventShare = () => {
     router.push("/event-management");
   };
 
+  const handleCheckbox = (
+    indexNumber: number,
+    id: number,
+    checked: boolean,
+  ) => {
+    setSelectedId(id);
+    setSelectedIndexes((prev) => {
+      if (checked) {
+        return [...prev, indexNumber];
+      } else {
+        return prev.filter((item) => item !== indexNumber);
+      }
+    });
+  };
+
   const hanldeEditPage = (text: string) => {
     if (selectedId && text === "edit") {
       router.push(`/edit-event?editId=${selectedId}`);
@@ -141,10 +150,12 @@ const EventShare = () => {
 
   // edit email get
   const handleCopyEmail = (text: string) => {
-    if (!tags.includes(text)) {
-      setTags([...tags, text]);
-    }
+   if (!tags.includes(text)) {
+    setTags([...tags, text]);
+  }
   };
+
+  
 
   return (
     <div
@@ -158,7 +169,7 @@ const EventShare = () => {
     >
       <div className="container mx-auto px-4 py-4 ">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-5 border-2 border-transparent">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-5  ">
           <div className="flex flex-col md:flex-row items-center gap-2">
             {/* event management */}
             <div className="inline-flex rounded-lg bg-linear-to-r from-[#FEAC1A] to-[#F84426] p-px">
@@ -216,9 +227,9 @@ const EventShare = () => {
         </div>
 
         {/* Gradient Border Card */}
-        <div className="border-2 border-transparent">
+        <div className="">
           <div
-            className={`bg-[#fff7f4]/60 shadow rounded-2xl p-2 md:p-4 min-h-[calc(100vh-140px)] `}
+            className={`bg-[#fff7f4]/60 shadow rounded-2xl p-4 min-h-[calc(100vh-140px)] `}
           >
             <div className="flex justify-between items-center">
               <div className="">
@@ -280,80 +291,34 @@ const EventShare = () => {
                 <div>
                   <div className="font-semibold text-gray-700">Guest Email</div>
                   <div className="flex flex-col">
-                    <div className="w-full border p-1 py-2 rounded-md flex flex-wrap gap-2">
-                      {tags.map((tag, index) => (
+                    <div className="w-full border rounded-md p-2 flex flex-wrap gap-2">
+                      {/* Tag Items */}
+                      {tags.map((tag) => (
                         <div
-                          key={index}
-                          className="flex items-center bg-gray-200 px-1 py-0.5 rounded"
+                          key={tag}
+                          className="flex items-center bg-gray-200 px-2 py-1 rounded"
                         >
-                          {editingTagIndex === index ? (
-                            <input
-                              type="text"
-                              value={editingTagValue}
-                              autoFocus
-                              onChange={(e) =>
-                                setEditingTagValue(e.target.value)
-                              }
-                              onBlur={() => {
-                                const updatedTags = [...tags];
-                                updatedTags[index] =
-                                  editingTagValue.trim() || tag;
-                                setTags(updatedTags);
-                                setEditingTagIndex(null);
-                              }}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  const updatedTags = [...tags];
-                                  updatedTags[index] =
-                                    editingTagValue.trim() || tag;
-                                  setTags(updatedTags);
-                                  setEditingTagIndex(null);
-                                }
-                              }}
-                              className="text-sm outline-none bg-gray-100 px-1 py-0.5 rounded"
-                            />
-                          ) : (
-                            <>
-                              <span
-                                className="text-sm"
-                                onClick={() => {
-                                  setEditingTagIndex(index);
-                                  setEditingTagValue(tag);
-                                }}
-                              >
-                                {tag}
-                              </span>
+                          <span className="text-sm text-wrap">{tag}</span>
 
-                              <button
-                                onClick={() => removeTag(tag)}
-                                className="ml-2 text-red-500"
-                              >
-                                ×
-                              </button>
-                            </>
-                          )}
+                          <button
+                            onClick={() => removeTag(tag)}
+                            className="ml-2 text-red-500"
+                          >
+                            ×
+                          </button>
                         </div>
                       ))}
 
+                      {/* Input */}
                       <input
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown2}
                         placeholder={`${tags.length > 0 ? "Add more email.." : "Enter email.."}`}
-                        className="flex-1 outline-none px-2"
+                        className="flex-1 outline-none"
                       />
                     </div>
-
-                    {/* Duplicate tooltip */}
-                    <div className="mt-1 min-h-5">
-                      {duplicateEmail && (
-                        <span className="text-red-500 text-sm">
-                          "{duplicateEmail}" already exists
-                        </span>
-                      )}
-                    </div>
-
-                    <div className=" flex justify-end">
+                    <div className="mt-4 flex justify-end">
                       <Button
                         style={{
                           background:
