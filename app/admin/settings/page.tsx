@@ -1,5 +1,5 @@
 "use client";
-import { LocationFieldIcon, PhoneIpfIcon, UserInfIcon } from "@/app/icon";
+import { LocationFieldIcon, PhoneIpfIcon, UserInfIcon } from "@/components/icon";
 import CustomButton from "@/components/resuable/customButton/customButton";
 import { FromInput } from "@/components/resuable/form-input";
 import Form from "@/components/resuable/from";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useGlobalState } from "@/app/hooks";
-import { DB_doted_Icon } from "@/app/icon";
+import { DB_doted_Icon } from "@/components/icon";
 import Form from "@/components/resuable/from";
 import { FromTextArea } from "@/components/resuable/from-textarea";
 import Modal from "@/components/resuable/modal";

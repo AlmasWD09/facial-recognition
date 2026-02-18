@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Eye_Off_Icon, Eye_On_Icon } from "@/app/icon";
+import { Eye_Off_Icon, Eye_On_Icon } from "@/components/icon";
 
 interface formInputProps {
   stylelabel?: string;

@@ -9,7 +9,7 @@ import {
   Upload_ic_Icon,
   User_ic_Icon,
   UserIcon,
-} from "@/app/icon";
+} from "@/components/icon";
 import photo1 from "@/public/banner-bg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

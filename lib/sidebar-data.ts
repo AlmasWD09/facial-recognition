@@ -1,4 +1,4 @@
-import { dashboard_ac, dashboard_i_ac, eventManagement_ac, eventManagement_i_ac, settings_ac, settings_i_ac, subscription_ac, subscription_i_ac, userManagement_ac, userManagement_i_ac } from "@/app/icon/dbIcon";
+import { dashboard_ac, dashboard_i_ac, eventManagement_ac, eventManagement_i_ac, settings_ac, settings_i_ac, subscription_ac, subscription_i_ac, userManagement_ac, userManagement_i_ac } from "@/components/icon/dbIcon";
 
 
 export interface MenuItem {

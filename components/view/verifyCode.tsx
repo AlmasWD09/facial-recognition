@@ -18,7 +18,7 @@ import SubTitle from "../shared/title/title";
 import Form from "../resuable/from";
 import { FromInput } from "../resuable/form-input";
 import SpinnerCa from "../resuable/Spinner_ca";
-import { ChangeIcon, ResetIcon3 } from "@/app/icon";
+import { ChangeIcon, ResetIcon3 } from "@/components/icon";
 import Link from "next/link";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";

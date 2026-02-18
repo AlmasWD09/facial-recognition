@@ -1,7 +1,7 @@
 "use client";
 
 import { useGlobalState } from "@/app/hooks";
-import { DeleteIcon, EditDBIcon } from "@/app/icon";
+import { DeleteIcon, EditDBIcon } from "@/components/icon";
 import { db_add_faq_sc, db_edit_faq_sc } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDown, ChevronUp, Plus } from "lucide-react";

@@ -11,7 +11,7 @@ import { register } from "@/lib/schema";
 import SubTitle from "../shared/title/title";
 import Form from "../resuable/from";
 import { FromInput } from "../resuable/form-input";
-import { EmailIcon, LockIcon, UserIcon } from "@/app/icon";
+import { EmailIcon, LockIcon, UserIcon } from "@/components/icon";
 
 export default function Register() {
   const router = useRouter();

@@ -13,7 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Form from "../resuable/from";
 import SubTitle from "../shared/title/title";
 import { FromInput } from "../resuable/form-input";
-import { LockIcon } from "@/app/icon";
+import { LockIcon } from "@/components/icon";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { new_Pass } from "@/lib/schema";

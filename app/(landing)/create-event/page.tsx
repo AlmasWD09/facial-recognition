@@ -1,6 +1,6 @@
 "use client";
 
-import { Setting_Nav_Icon, Upload_cc_Icon } from "@/app/icon";
+import { Setting_Nav_Icon, Upload_cc_Icon } from "@/components/icon";
 import { FromInput } from "@/components/resuable/form-input";
 import Form from "@/components/resuable/from";
 import DatePickerCompo from "@/components/shared/datePicker/DatePickerCompo";

@@ -12,7 +12,7 @@ import { Suspense } from "react";
 import SubTitle from "../shared/title/title";
 import Form from "../resuable/from";
 import { FromInput } from "../resuable/form-input";
-import { EmailIcon, LockIcon } from "@/app/icon";
+import { EmailIcon, LockIcon } from "@/components/icon";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import SpinnerCa from "../resuable/Spinner_ca";

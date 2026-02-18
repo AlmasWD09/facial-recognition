@@ -1,6 +1,6 @@
 "use client";
 
-import { DB_doted_Icon, DB_eye_Icon } from "@/app/icon";
+import { DB_doted_Icon, DB_eye_Icon } from "@/components/icon";
 import CustomPagination from "@/components/customPagination/CustomPagination";
 import NotFound from "@/components/resuable/notFound";
 import { DateFormatter, FormattedTime } from "@/components/shared/dateFormate/dateFormate";

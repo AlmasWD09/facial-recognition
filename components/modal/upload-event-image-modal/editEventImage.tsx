@@ -1,6 +1,6 @@
 "use client";
 
-import { Upload_cc_Icon } from "@/app/icon";
+import { Upload_cc_Icon } from "@/components/icon";
 import Form from "@/components/resuable/from";
 import Modal from "@/components/resuable/modal";
 import { Button } from "@/components/ui/button";

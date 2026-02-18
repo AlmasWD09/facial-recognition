@@ -1,6 +1,6 @@
 "use client";
 
-import { Setting_Nav_Icon } from "@/app/icon";
+import { Setting_Nav_Icon } from "@/components/icon";
 import { Button } from "@/components/ui/button";
 import photo1 from "@/public/banner-bg.png";
 import { useRouter } from "next/navigation";

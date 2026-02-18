@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import SubTitle from "../shared/title/title";
 import photo1 from "@/public/right.png";
-import { Faq_ic_Icon, Faq_icc_Icon } from "@/app/icon";
+import { Faq_ic_Icon, Faq_icc_Icon } from "@/components/icon";
 
 function Faq() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);

@@ -1,6 +1,6 @@
 "use client";
 
-import { Setting_Nav_Icon, Share_ac_Icon } from "@/app/icon";
+import { Setting_Nav_Icon, Share_ac_Icon } from "@/components/icon";
 import photo1 from "@/public/banner-bg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

@@ -7,7 +7,7 @@ import {
   Reset_event_ic_Icon,
   Save_event_ic_Icon,
   Setting_Nav_Icon,
-} from "@/app/icon";
+} from "@/components/icon";
 import photo1 from "@/public/banner-bg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

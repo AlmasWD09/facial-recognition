@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import SubTitle from "@/components/shared/title/title";
 import photo1 from "@/public/right.png";
-import { Faq_ic_Icon, Faq_icc_Icon } from "@/app/icon";
+import { Faq_ic_Icon, Faq_icc_Icon } from "@/components/icon";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 

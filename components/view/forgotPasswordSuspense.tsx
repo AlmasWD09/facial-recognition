@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Suspense } from "react";
 import { forgot_sc } from "@/lib/schema";
 import IconBox from "../resuable/Icon-box";
-import { EmailIcon, QuestionIcon_cc } from "@/app/icon";
+import { EmailIcon, QuestionIcon_cc } from "@/components/icon";
 import SubTitle from "../shared/title/title";
 import Form from "../resuable/from";
 import { FromInput } from "../resuable/form-input";

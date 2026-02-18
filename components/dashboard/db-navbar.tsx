@@ -1,6 +1,6 @@
 "use client";
 
-import { DbNotification_cc } from "@/app/icon/dbIcon";
+import { DbNotification_cc } from "@/components/icon/dbIcon";
 import { getPageInfo } from "@/lib/sidebar-data";
 import { Menu } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
