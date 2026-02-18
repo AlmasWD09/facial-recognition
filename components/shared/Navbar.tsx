@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-[rgba(163,163,163,0.10)] backdrop-blur-[20px] container mx-auto  sticky top-0 z-50 rounded-xl">
-      <div className="bg-secondary rounded-xl px-4">
+      <div className="rounded-xl px-4">
         <div className="flex justify-between items-center h-17.5 py-3">
           {/* Logo **/}
           <Link href={"/"}>
@@ -63,7 +63,7 @@ export default function Navbar() {
           {/* Right Side */}
           <div className="hidden lg:flex items-center space-x-3">
             <Link href="/auth">
-              <button className="bg-white font-bold shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] rounded-lg px-4 py-2 cursor-pointer">
+              <button className="bg-white font-bold shadow-[0_4px_12px_rgba(255,188,66,0.5),0_-4px_8px_rgba(255,188,66,0.3)] rounded-lg px-4 py-2 cursor-pointer">
                 <span className="TextGradientTwo">Log in</span>
               </button>
             </Link>
@@ -93,7 +93,7 @@ export default function Navbar() {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-2 px-3 py-2 text-black rounded-figma-md! text-sm transition 
-                    ${isActive && " text-primary font-bold"}`}
+                    ${isActive ? 'text-[#989898] font-medium' : 'text-[#535353]' }`}
                 >
                   <FavIcon name={isActive ? item.icon_i : (item.icon as any)} />
                   {item.name}
@@ -106,7 +106,7 @@ export default function Navbar() {
               <div className="flex items-center gap-3">
                 <div className="lg:hidden flex items-center space-x-3">
                   <Link href="/auth" onClick={() => setIsOpen(false)}>
-                     <button className="bg-white font-bold shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] rounded-lg px-4 py-2 cursor-pointer">
+                     <button className="bg-white font-bold shadow-[0_4px_12px_rgba(255,188,66,0.5),0_-4px_8px_rgba(255,188,66,0.3)] rounded-lg px-4 py-2 cursor-pointer">
                 <span className="TextGradientTwo">Log in</span>
               </button>
                   </Link>

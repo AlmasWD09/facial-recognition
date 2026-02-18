@@ -1,12 +1,13 @@
 "use client";
 
-import { Event_logo_Icon, Setting_Nav_Icon } from "@/components/icon";
+
 import photo1 from "@/public/banner-bg.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
+import { Event_logo_Icon, Setting_Nav_Icon } from "@/components/icon";
 
 const eventData = [
   {

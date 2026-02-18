@@ -24,7 +24,7 @@ export default function Banner() {
   return (
     <>
       <div
-        className=""
+        className="h-screen"
         style={{
           backgroundImage: `url(${photo1.src})`,
           backgroundSize: "100% 100%",
@@ -32,8 +32,8 @@ export default function Banner() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center pt-40 pb-10">
+        <div className="container mx-auto px-4 flex flex-col justify-between h-screen">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-28 md:gap-0 h-full pt-40 md:pt-0">
             <div className="space-y-4 md:space-y-6">
               <h1 className="font-bold text-[24px] md:text-[40px]">
                 You Were There, We'll Prove It.
@@ -67,8 +67,8 @@ export default function Banner() {
                 <Image
                   src="/banner-photo01.png"
                   alt="photo"
-                  width={400}
-                  height={400}
+                  width={500}
+                  height={500}
                   className="object-cover"
                 />
               </div>
