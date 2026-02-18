@@ -20,7 +20,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[#f6ecdb65] container mx-auto  sticky top-0 z-50 rounded-xl">
+    <nav className="bg-[rgba(163,163,163,0.10)] backdrop-blur-[20px] container mx-auto  sticky top-0 z-50 rounded-xl">
       <div className="bg-secondary rounded-xl px-4">
         <div className="flex justify-between items-center h-17.5 py-3">
           {/* Logo **/}

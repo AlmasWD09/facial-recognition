@@ -23,7 +23,7 @@ import {
 } from "react";
 import BackButton from "@/components/shared/back-button";
 import { Switch } from "@/components/ui/switch";
-import { LinkIcon } from "lucide-react";
+import { Check, LinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -46,9 +46,8 @@ const EventShare = () => {
   const [switchValue, setSwitchValue] = useState<boolean>(false);
   const [tags, setTags] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
-
-  console.log(tags);
-  console.log("input ----> ", inputValue);
+  const [eventLink] = useState("http://lldg.l.ab/uskyfirlfte");
+  const [copied, setCopied] = useState(false);
 
   // ======== tags input =============== //
   const addTag = () => {
@@ -132,6 +131,31 @@ const EventShare = () => {
   const handleSwitchChange = (checked: boolean) => {
     setSwitchValue(checked);
   };
+
+  // copy link
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(eventLink);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
+  // reset otp code
+  const handleResetOtp = () => {
+    setOtp(Array(6).fill(""));
+    inputRefs.current[0]?.focus();
+  };
+
+  // edit email get
+  const handleCopyEmail = (text: string) => {
+   if (!tags.includes(text)) {
+    setTags([...tags, text]);
+  }
+  };
+
+  
 
   return (
     <div
@@ -237,13 +261,14 @@ const EventShare = () => {
                     <div className="flex-1 flex items-center gap-2  border border-gray-200 rounded-lg px-3 py-2">
                       <input
                         type="text"
-                        value="http://lldg.l.ab/uskyfirlfte"
+                        value={eventLink}
                         readOnly
                         className="h-6 flex-1 bg-transparent text-sm text-[#299847] outline-none"
                       />
                     </div>
                     <div>
                       <Button
+                        onClick={() => handleCopyLink()}
                         style={{
                           background:
                             "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
@@ -256,7 +281,8 @@ const EventShare = () => {
                         }}
                         className="cursor-pointer w-full rounded-sm  text-white h-11"
                       >
-                        Copy link
+                        {copied && <Check size={16} />}
+                        {copied ? "Copied" : "Copy link"}
                       </Button>
                     </div>
                   </div>
@@ -288,7 +314,7 @@ const EventShare = () => {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown2}
-                        placeholder="Enter email..."
+                        placeholder={`${tags.length > 0 ? "Add more email.." : "Enter email.."}`}
                         className="flex-1 outline-none"
                       />
                     </div>
@@ -314,7 +340,7 @@ const EventShare = () => {
               </div>
 
               {/* Code Section */}
-              <div className="w-full border border-gray-200 p-4 rounded-xl ">
+              <div className="w-full border border-gray-200 p-4 rounded-xl">
                 <div className="font-semibold text-gray-700 mb-2">Code</div>
                 <div className="">
                   {/* Code Display Boxes */}
@@ -334,7 +360,7 @@ const EventShare = () => {
                             if (el) inputRefs.current[index] = el;
                           }}
                           className={cn(
-                            "w-10 h-10 md:w-20 md:h-14 text-center text-lg font-medium border-gray-300",
+                            "w-10 h-10 md:w-22 md:h-16 text-center text-lg font-medium border-gray-300",
                             "",
                             digit && "",
                           )}
@@ -344,9 +370,10 @@ const EventShare = () => {
                   </CardContent>
 
                   {/* Action Buttons */}
-                  <div className="grid grid-cols-3 gap-3 mt-4">
+                  <div className="flex justify-end mt-4 ">
                     <div>
-                      <Button
+                      <button
+                        onClick={() => handleResetOtp()}
                         style={{
                           background:
                             "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
@@ -357,51 +384,15 @@ const EventShare = () => {
                           color: "white",
                           cursor: "pointer",
                         }}
-                        className="cursor-pointer w-full rounded-sm  text-white h-11"
+                        className="cursor-pointer w-fit flex items-center gap-2 font-medium rounded-sm px-20 text-white h-11"
                       >
-                        <Delete_event_ic_Icon />
-                      </Button>
-                    </div>
-                    <div>
-                      <Button
-                        style={{
-                          background:
-                            "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
-                          padding: "0px 20px",
-                          border: "none",
-                          borderRadius: "8px",
-                          fontSize: "16px",
-                          color: "white",
-                          cursor: "pointer",
-                        }}
-                        className="cursor-pointer w-full rounded-sm  text-white h-11"
-                      >
-                        <Reset_event_ic_Icon />
-                      </Button>
-                    </div>
-                    <div>
-                      <Button
-                        style={{
-                          background:
-                            "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
-                          padding: "0px 20px",
-                          border: "none",
-                          borderRadius: "8px",
-                          fontSize: "16px",
-                          color: "white",
-                          cursor: "pointer",
-                        }}
-                        className="cursor-pointer w-full rounded-sm  text-white h-11"
-                      >
-                        <Save_event_ic_Icon />
-                      </Button>
+                        <Reset_event_ic_Icon /> Reset
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-
 
             {/* **** */}
             <div className="space-y-0 p-4 bg-[#DEDEDE33] rounded-xl mt-8 overflow-x-auto">
@@ -413,13 +404,13 @@ const EventShare = () => {
                   <h2 className="font-semibold">Status</h2>
                 </div>
               </div>
-              {emails.map((email, idx) => (
+              {emails.map((item, idx) => (
                 <div
                   key={idx}
                   className="flex items-center justify-between py-3 "
                 >
                   <div className="text-sm text-gray-600 flex-1 min-w-60 pr-4">
-                    <span className="">{email}</span>
+                    <span className="">{item}</span>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -442,6 +433,7 @@ const EventShare = () => {
                     </div>
                     <div>
                       <Button
+                        onClick={() => handleCopyEmail(item)}
                         style={{
                           background:
                             "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",

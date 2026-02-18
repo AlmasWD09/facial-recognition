@@ -77,7 +77,7 @@ export default function Banner() {
 
           {/* category */}
           <div className="flex flex-wrap justify-center items-center gap-6 pb-6">
-            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
+            <div className="w-50 md:w-fit flex items-center gap-2 bg-[rgba(163,163,163,0.10)] backdrop-blur-[20px] p-4 rounded-xl">
               <Image
                 src="/banner/category01.png"
                 alt="photo"
@@ -87,7 +87,7 @@ export default function Banner() {
               />
               <h2 className="text-[#5D5D5D] text-base ">Take a Selfie</h2>
             </div>
-            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
+            <div className="w-50 md:w-fit flex items-center gap-2 bg-[rgba(163,163,163,0.10)] backdrop-blur-[20px] p-4 rounded-xl">
               <Image
                 src="/banner/category02.png"
                 alt="photo"
@@ -97,7 +97,7 @@ export default function Banner() {
               />
               <h2 className="text-[#5D5D5D] text-base ">See your photos</h2>
             </div>
-            <div className="w-50 md:w-fit flex items-center gap-2 bg-secondary/90 p-4 rounded-xl">
+            <div className="w-50 md:w-fit flex items-center gap-2 bg-[rgba(163,163,163,0.10)] backdrop-blur-[20px] p-4 rounded-xl">
               <Image
                 src="/banner/category03.png"
                 alt="photo"
