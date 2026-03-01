@@ -1,6 +1,6 @@
 # Facial Recognition
 
-We handle the cleaning, you enjoy the calm. Reliable, detail-oriented service that gives you back your most valuable asset—time.
+We handle the cleaning, you enjoy the calm. Reliable, detail-oriented service that gives you back your most valuable asset—time
 
 ## 🚀 Features
 
