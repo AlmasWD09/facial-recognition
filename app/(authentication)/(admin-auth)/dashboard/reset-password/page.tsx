@@ -41,6 +41,10 @@ function ResetPasswordContent() {
   const passwordValue = watch("password");
 
   const onSubmit: SubmitHandler<CreateNewPasswordInputs> = async (values) => {
+    console.log(values)
+    router.push("/dashboard/login")
+
+
     // const formData = new FormData();
     // formData.append("email", email as string);
     // formData.append("password", values?.password);
@@ -69,7 +73,7 @@ function ResetPasswordContent() {
               alt="photo"
               width={100}
               height={100}
-              className="w-[120px] object-cover"
+              className="w-30 object-cover"
             />
           </div>
 
@@ -95,7 +99,7 @@ function ResetPasswordContent() {
                     id="password"
                     type={showNewPassword ? "text" : "password"}
                     placeholder="Enter your new password"
-                    className="border p-2 rounded-lg w-full"
+                    className="border p-2 rounded-lg w-full h-11"
                     {...register("password", {
                       required: "Password is required",
                     })}
@@ -132,7 +136,7 @@ function ResetPasswordContent() {
                     id="password_confirmation"
                     type={showRetypePassword ? "text" : "password"}
                     placeholder="Enter your retype Password"
-                    className="border p-2 rounded-lg w-full"
+                    className="border p-2 rounded-lg w-full h-11"
                     {...register("password_confirmation", {
                       required: "Please confirm your password",
                       validate: (value) =>
@@ -161,7 +165,6 @@ function ResetPasswordContent() {
               {/* Submit Button */}
               <div className="flex justify-center">
                 <Button
-                  onClick={() => router.push("/dashboard/login")}
                   style={{
                     background:
                       "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
@@ -172,7 +175,7 @@ function ResetPasswordContent() {
                     color: "white",
                     cursor: "pointer",
                   }}
-                  className="cursor-pointer w-full rounded-sm bg-primary text-white"
+                  className="cursor-pointer w-full rounded-sm bg-primary text-white h-11"
                 >
                   Update Password
                 </Button>

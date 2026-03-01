@@ -34,7 +34,10 @@ function ResetPasswordContent() {
     },
   });
 
-  const handleSubmit = async (values: FieldValues) => {};
+  const handleSubmit = async (values: FieldValues) => {
+    // console.log(values)
+    router.push('/auth')
+  };
 
   return (
     <div className="h-screen flex justify-center items-center bg-secondary">
@@ -69,7 +72,6 @@ function ResetPasswordContent() {
           </div>
 
           <div>
-            <Link href={'/auth'}>
             <Button
               style={{
                 background:
@@ -86,7 +88,6 @@ function ResetPasswordContent() {
               Update Passoword
               {/* {isLoading ? <SpinnerCa /> : "Login"} */}
             </Button>
-            </Link>
           </div>
         </Form>
       </div>
@@ -104,7 +105,7 @@ export default function ResetPassword() {
               {/* Header skeleton */}
               <div className="space-y-2 text-center pb-4 px-6 pt-6">
                 <div className="flex justify-center animate-pulse">
-                  <div className="w-[120px] h-[120px] bg-gray-200 rounded"></div>
+                  <div className="w-30 h-30 bg-gray-200 rounded"></div>
                 </div>
                 <div className="animate-pulse">
                   <div className="h-8 w-48 mx-auto bg-gray-200 rounded mb-2"></div>

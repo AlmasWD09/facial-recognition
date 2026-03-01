@@ -94,6 +94,8 @@ function VarifyOtp() {
     //     toast.error(errorValue?.data?.message); // Now you can safely access error.data.message
     //   }
     // }
+
+    router.push("/auth/reset-password");
   };
 
   // send again otp code function
@@ -121,7 +123,7 @@ function VarifyOtp() {
 
   return (
     <div className="h-screen flex justify-center items-center bg-secondary">
-      <div className="w-11/12 lg:max-w-2xl bg-[#FFFFFF] rounded-figma-sm p-4 lg:p-10 my-30 mx-auto">
+      <div className="w-11/12 lg:max-w-2xl bg-[#FFFFFF] rounded-figma-sm p-4 lg:p-10 my-30 mx-auto ">
         <div className="pb-8">
           <SubTitle text="Verify your email" svg={false} />
           <p className="text-center text-[#989898]">
@@ -129,51 +131,53 @@ function VarifyOtp() {
           </p>
         </div>
 
-        <label htmlFor="" className="text-black text-base font-medium">Verify Otp</label>
-        <div className="flex justify-center space-x-8 my-2">
-          {otp.map((digit, index) => (
-            <Input
-              key={index}
-              id={`otp-input-${index}`}
-              type="text"
-              maxLength={1}
-              value={digit}
-              onChange={(e) => handleChange(e, index)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              onPaste={handlePaste}
-              ref={(el) => {
-                if (el) inputRefs.current[index] = el;
-              }}
-              className={cn(
-                "w-20 h-16 text-center text-lg font-medium border-gray-300",
-                "",
-                digit && "",
-              )}
-            />
-          ))}
+        <div>
+          <label htmlFor="" className="text-black text-base font-medium">
+            Verify Otp
+          </label>
+          <div className="flex justify-center space-x-2 md:space-x-3 my-2">
+            {otp.map((digit, index) => (
+              <Input
+                key={index}
+                id={`otp-input-${index}`}
+                type="text"
+                maxLength={1}
+                value={digit}
+                onChange={(e) => handleChange(e, index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                onPaste={handlePaste}
+                ref={(el) => {
+                  if (el) inputRefs.current[index] = el;
+                }}
+                className={cn(
+                  "w-16 h-12 md:w-24 md:h-16 text-center text-lg font-medium border-gray-300",
+                  "",
+                  digit && "",
+                )}
+              />
+            ))}
+          </div>
         </div>
 
-
         <div className="mt-8">
-          <Link href={"/auth/reset-password"}>
-            <Button
-              onClick={handleVerify}
-              style={{
-                background:
-                  "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
-                padding: "10px 20px",
-                border: "none",
-                borderRadius: "8px",
-                fontSize: "20px",
-                color: "white",
-                cursor: "pointer",
-              }}
-              className="cursor-pointer w-full rounded-sm  text-white h-11"
-            >
-              Verify
-              {/* {isVerifyLoading ? <SpinnerCa /> : "Verify"} */}
-            </Button>
-          </Link>
+          <Button
+            onClick={handleVerify}
+            style={{
+              background:
+                "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
+              padding: "10px 20px",
+              border: "none",
+              borderRadius: "8px",
+              fontSize: "20px",
+              color: "white",
+              cursor: "pointer",
+            }}
+            className="cursor-pointer w-full rounded-sm  text-white h-11"
+            disabled={otp.some((digit) => digit === "")}
+          >
+            Verify
+            {/* {isVerifyLoading ? <SpinnerCa /> : "Verify"} */}
+          </Button>
         </div>
 
         <div className="mt-2 flex justify-end ">
@@ -187,7 +191,9 @@ function VarifyOtp() {
               </div>
             ) : (
               <div className="text-figma-secondary cursor-pointer flex items-center justify-end space-x-2">
-                <span className="ml-1 font-semibold TextGradientTwo">Send again</span>
+                <span className="ml-1 font-semibold TextGradientTwo">
+                  Send again
+                </span>
               </div>
             )}
           </button>

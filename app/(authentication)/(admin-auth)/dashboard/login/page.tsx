@@ -30,6 +30,10 @@ export default function LoginPage() {
 
   // Handle form submit
   const onSubmit: SubmitHandler<LoginFormInputs> = async (values) => {
+    // console.log(values)
+
+    router.push("/admin");
+
     // const formData = new FormData();
     // formData.append("email", values?.email);
     // formData.append("password", values?.password);
@@ -93,7 +97,7 @@ export default function LoginPage() {
               <input
                 type="email"
                 id="email"
-                className="border p-2 rounded-lg"
+                className="border p-2 rounded-lg h-11"
                 placeholder="Enter your Email"
                 {...register("email", {
                   required: "Email is required",
@@ -115,7 +119,7 @@ export default function LoginPage() {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className="border p-2 rounded-lg w-full"
+                className="border p-2 rounded-lg w-full h-11"
                 placeholder="Enter your Password"
                 {...register("password", {
                   required: "Password is required",
@@ -162,7 +166,6 @@ export default function LoginPage() {
 
             <div className="flex justify-center">
               <Button
-                onClick={() => router.push("/admin")}
                 style={{
                   background:
                     "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
@@ -173,7 +176,7 @@ export default function LoginPage() {
                   color: "white",
                   cursor: "pointer",
                 }}
-                className="cursor-pointer w-full rounded-sm  text-white"
+                className="cursor-pointer w-full rounded-sm  text-white h-11"
               >
                 Sign in
               </Button>
