@@ -31,7 +31,7 @@ function Login() {
   });
 
   const handleSubmit = async (values: FieldValues) => {
-    // console.log(values);
+    console.log(values);
     const loginInfo = {
       email: values.email,
     };
