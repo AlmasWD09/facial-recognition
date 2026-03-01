@@ -202,5 +202,5 @@ For support and inquiries:
 
 
 <!-- Extra -->
-<!-- Redux setup done -->
+<!-- Redux setup done --->
 <!-- shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] -->
