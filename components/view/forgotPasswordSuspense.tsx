@@ -26,6 +26,7 @@ function ForgotPassword() {
   // const [forgotPasswordApi, { isLoading }] = useForgotPasswordApiMutation();
 
   const handleSubmit = async (values: FieldValues) => {
+    // console.log(values)
     // const formData = new FormData();
     // formData.append("email", values?.email);
     // try {
@@ -42,6 +43,8 @@ function ForgotPassword() {
     //     toast.error(errorValue?.data?.message);
     //   }
     // }
+
+    router.push("/auth/verify-otp")
   };
 
   return (
@@ -63,7 +66,6 @@ function ForgotPassword() {
           />
 
           <div>
-            <Link href={"/auth/verify-otp"}>
               <Button
                 style={{
                   background:
@@ -80,7 +82,6 @@ function ForgotPassword() {
                 Send code
                 {/* {isLoading ? <SpinnerCa /> : "Send code"} */}
               </Button>
-            </Link>
 
             {/* <div
               className="

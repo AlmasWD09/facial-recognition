@@ -63,7 +63,10 @@ function SuspendVerification() {
 
   // verify otp code function
   const handleVerify = async () => {
-    const fullOtp = otp.join("");
+    // console.log(otp);
+    // router.push("/dashboard/reset-password");
+
+    
     // const formData = new FormData();
     // if (email) {
     //   formData.append("email", email);
@@ -118,7 +121,7 @@ function SuspendVerification() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-lg py-20 bg-[#636363]/0.5">
+      <Card className="w-full max-w-lg py-20 bg-[#636363]/0.5 px-4">
         <CardHeader className="text-center space-y-2 pb-4">
           <div className="flex justify-center">
             <Image
@@ -126,7 +129,7 @@ function SuspendVerification() {
               alt="photo"
               width={100}
               height={100}
-              className="w-[120px]  object-cover"
+              className="w-30  object-cover"
             />
           </div>
           <h1 className="text-2xl font-semibold text-black">
@@ -140,7 +143,7 @@ function SuspendVerification() {
         </CardHeader>
 
         <CardContent>
-          <div className="flex justify-center space-x-3 mb-2">
+          <div className="flex justify-center space-x-2 md:space-x-3 mb-2">
             {otp.map((digit, index) => (
               <Input
                 key={index}
@@ -155,7 +158,7 @@ function SuspendVerification() {
                   if (el) inputRefs.current[index] = el;
                 }}
                 className={cn(
-                  "w-12 h-12 text-center text-lg font-medium border-gray-300",
+                  "w-16 h-12 md:w-20 md:h-16 text-center text-lg font-medium border-gray-300",
                   "",
                   digit && "",
                 )}
@@ -165,7 +168,7 @@ function SuspendVerification() {
 
           <div className="flex justify-center">
             <Button
-              onClick={() => router.push("/dashboard/reset-password")}
+              onClick={handleVerify}
               style={{
                 background:
                   "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
@@ -176,7 +179,8 @@ function SuspendVerification() {
                 color: "white",
                 cursor: "pointer",
               }}
-              className="cursor-pointer w-full rounded-sm bg-primary text-[#ffff] mt-4"
+              className="cursor-pointer w-full rounded-sm bg-primary text-[#ffff] h-11 mt-4"
+              disabled={otp.some((digit) => digit === "")}
             >
               Verify Code
             </Button>

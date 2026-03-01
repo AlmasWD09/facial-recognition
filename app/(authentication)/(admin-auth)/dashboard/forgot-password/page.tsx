@@ -32,6 +32,9 @@ export default function ForgotPassword() {
 
   // Handle form submit
   const onSubmit: SubmitHandler<ForgotInput> = async (values) => {
+    // console.log(values)
+    router.push("/dashboard/verify-otp");
+
     // const formData = new FormData();
     // formData.append("email", values?.email);
     // try {
@@ -52,7 +55,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full bg-[#636363]/0.5 max-w-lg py-20">
+      <Card className="w-full bg-[#636363]/0.5 max-w-lg py-20 px-4">
         <CardHeader className="space-y-2 text-center pb-4">
           <div className="flex justify-center">
             <Image
@@ -77,7 +80,7 @@ export default function ForgotPassword() {
               <input
                 type="email"
                 id="email"
-                className="border p-2 rounded-lg"
+                className="border p-2 rounded-lg h-11"
                 placeholder="Enter your Email"
                 {...register("email", {
                   required: "Email is required",
@@ -94,7 +97,6 @@ export default function ForgotPassword() {
 
             <div className="flex justify-center mt-4">
               <Button
-                onClick={() => router.push("/dashboard/verify-otp")}
                 style={{
                   background:
                     "linear-gradient(98deg, #FEAC1A 11.54%, #F84426 87.5%)",
@@ -105,7 +107,7 @@ export default function ForgotPassword() {
                   color: "white",
                   cursor: "pointer",
                 }}
-                className="cursor-pointer w-full rounded-sm bg-primary text-[#ffff]"
+                className="cursor-pointer w-full rounded-sm bg-primary text-[#ffff] h-11"
               >
                 Send Code
               </Button>
