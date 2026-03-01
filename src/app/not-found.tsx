@@ -21,7 +21,7 @@ export default function NotFound() {
           />
         </div>
         <div>
-          <h2 className="text-2xl font-semibold">Oops 55</h2>
+          <h2 className="text-2xl font-semibold">Oops</h2>
           <p className="text-gray-600">page not found</p>
         </div>
 
