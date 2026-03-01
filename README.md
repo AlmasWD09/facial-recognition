@@ -1,6 +1,6 @@
 # Facial Recognition
 
-We handle the cleaning, you enjoy the calm. Reliable, detail-oriented service that gives you back your most valuable asset—time
+We handle the cleaning, you enjoy the calm. Reliable, detail-oriented service that gives you back your most valuable asset—time.
 
 ## 🚀 Features
 
@@ -202,4 +202,5 @@ For support and inquiries:
 
 
 <!-- Extra -->
+<!-- Redux setup done -->
 <!-- shadow-[0_4px_12px_rgba(255,208,125,0.25),0_-4px_8px_rgba(255,208,125,0.15)] -->
