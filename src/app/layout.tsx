@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ReduxProvider from "../provider/ReduxProvider";
 
 
 export const metadata: Metadata = {
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        {children}</body>
+        <ReduxProvider>
+        {children}
+        </ReduxProvider>
+        </body>
     </html>
   );
 }

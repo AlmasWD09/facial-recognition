@@ -2,8 +2,8 @@
 
 import React, { ReactNode } from "react";
 import { Provider } from "react-redux";
-import store from "@/redux/store";
-import { Toaster } from "react-hot-toast";
+import store from "../redux/store";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
