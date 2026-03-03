@@ -4,7 +4,7 @@ We handle the cleaning, you enjoy the calm. Reliable, detail-oriented service th
 
 ## 🚀 Features
 
-### ✅ Individual User Features
+### ✅ Individual User Features.
 
 #### **Authentication & Onboarding**
 - User registration and login
