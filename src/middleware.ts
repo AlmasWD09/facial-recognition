@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
  
-export const middleware = (request: NextRequest) => {
+export const proxy = (request: NextRequest) => {
     const token = request.cookies.get('token')?.value;
     const role = request.cookies.get('role')?.value;
     // console.log("Token from the middleware:", token);
